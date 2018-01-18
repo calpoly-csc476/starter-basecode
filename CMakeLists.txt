@@ -82,6 +82,7 @@ if(WIN32)
   # -Wall produces way too many warnings.
   # -pedantic is not supported.
   target_link_libraries(${CMAKE_PROJECT_NAME} opengl32.lib)
+  target_compile_definitions(${CMAKE_PROJECT_NAME} PUBLIC NOMINMAX _CRT_SECURE_NO_WARNINGS)
 else()
   # Enable all pedantic warnings.
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wall -pedantic")
