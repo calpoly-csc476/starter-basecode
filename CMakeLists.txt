@@ -3,20 +3,20 @@ cmake_minimum_required(VERSION 2.7)
 # Name of the project
 project(476BaseCode)
 
-# Use glob to get the list of all source files.
-file(GLOB_RECURSE SOURCES "src/*.cpp" "ext/*.cpp" "ext/*.c")
-
-# We don't really need to include header and resource files to build, but it's
-# nice to have them show up in IDEs.
-file(GLOB_RECURSE HEADERS "src/*.h" "ext/*.h")
+# Use glob to get the list of all source files
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.h")
+file(GLOB_RECURSE SRC_EXT "ext/*.cpp" "ext/*.c" "ext/*.h")
 file(GLOB_RECURSE GLSL "resources/*.glsl")
 
 include_directories("ext")
 include_directories("ext/glad/include")
 
 # Set the executable.
-add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} ${HEADERS} ${GLSL})
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} ${SRC_EXT} ${GLSL})
 
+source_group("src"  FILES ${SOURCES})
+source_group("ext"  FILES ${SRC_EXT})
+source_group("glsl" FILES ${GLSL})
 
 
 # Add GLFW
